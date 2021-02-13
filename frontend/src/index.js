@@ -3,10 +3,10 @@ import ReactDOM from 'react-dom';
 import App from './App';
 import {Provider} from 'react-redux';
 import {BrowserRouter as Router} from "react-router-dom";
-import ErrorBoundry from "./components/error-boundry";
+import ErrorBoundry from "./components/errorBoundry";
 import store from "./store";
 import PostAPIService from "./services";
-import PostAPIServiceContext from "./services_contexts";
+import PostAPIServiceContext from "./servicesContexts";
 import "./index.css";
 
 const postAPIService = new PostAPIService();

@@ -1,8 +1,8 @@
 import React, {Component} from "react";
 import WithService from "../../hoc";
 import {connect} from "react-redux";
-import {postUpdateCompleted, postCreateCompleted} from "../../actions/post_actions";
-import {signInClicked} from "../../actions/user_actions";
+import {postUpdateCompleted, postCreateCompleted} from "../../actions/postActions";
+import {signInClicked} from "../../actions/userActions";
 import "./post.css";
 import "../static/css/form.css";
 import "../static/css/buttons.css";

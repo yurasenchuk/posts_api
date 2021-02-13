@@ -20,7 +20,7 @@ services:
     ports:
       - 8000:8000
     env_file:
-      - ./backend/.env.dev
+      - ./backend/.env
     volumes:
       - ./backend:/backend
     command: python manage.py runserver 0.0.0.0:8000

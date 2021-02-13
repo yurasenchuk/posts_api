@@ -43,7 +43,6 @@ export default class PostAPIService {
         if (!items.ok) {
             throw new CustomError(response.detail, items.status);
         }
-        console.log(response);
         return response;
     }
 
@@ -55,9 +54,7 @@ export default class PostAPIService {
             },
             body: data
         });
-        console.log(item)
         const response = await item.json();
-        console.log(item)
         if (!item.ok) {
             throw new CustomError(response.detail, item.status)
         }
@@ -154,7 +151,6 @@ export default class PostAPIService {
             },
             body: JSON.stringify({refresh: localStorage.getItem('refreshToken')})
         });
-        console.log(res);
         if (!res) {
             const response = await res.json();
             throw CustomError(response.detail, res.status);

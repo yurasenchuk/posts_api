@@ -2,8 +2,8 @@ import React, {Component} from "react";
 import PostItem from "../postItem";
 import {connect} from "react-redux";
 import WithService from "../../hoc";
-import {postsLoaded} from "../../actions/post_actions";
-import {signInClicked} from "../../actions/user_actions";
+import {postsLoaded} from "../../actions/postActions";
+import {signInClicked} from "../../actions/userActions";
 import Spinner from "../spinner";
 import "./postList.css";
 import "../static/css/buttons.css";
@@ -66,12 +66,12 @@ class PostList extends Component {
                 </>
             )
         }
-        const add_post = user.logged ? <Link to={'post/create/'} className="create-button">
+        const addPost = user.logged ? <Link to={'post/create/'} className="create-button">
             <div className="create-button-text">Add post</div>
         </Link> : null;
         return (
             <>
-                {add_post}
+                {addPost}
                 <Spinner loading={loading}/>
                 <div className="posts_list">
                     {

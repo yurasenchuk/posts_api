@@ -1,15 +1,15 @@
 import React, {Component} from "react";
 import {connect} from "react-redux";
 import {Link, Redirect} from "react-router-dom";
-import {postDeleted, upvoted} from "../../actions/post_actions";
-import {signInClicked} from "../../actions/user_actions";
+import {postDeleted, upvoted} from "../../actions/postActions";
+import {signInClicked} from "../../actions/userActions";
 import Error from "../error";
 import WithService from "../../hoc";
 import "../postItem/postItem.css";
 import "../static/css/buttons.css";
 import Spinner from "../spinner";
-import CommentList from "../comment_list/comment_list";
-import CommentForm from "../comment_form/coment_form";
+import CommentList from "../commentList/commentList";
+import CommentForm from "../commentForm/comentForm";
 
 class PostGetById extends Component {
     state = {

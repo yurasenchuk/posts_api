@@ -1,10 +1,10 @@
 import React, {Component} from "react";
-import CommentItem from "../comment_item";
+import CommentItem from "../commentItem";
 import {connect} from "react-redux";
 import WithService from "../../hoc";
-import {commentsLoaded, commentDeleted} from "../../actions/comment_actions";
-import {signInClicked} from "../../actions/user_actions";
-import "./comment_list.css";
+import {commentsLoaded, commentDeleted} from "../../actions/commentActions";
+import {signInClicked} from "../../actions/userActions";
+import "./commentList.css";
 import "../static/css/buttons.css";
 import Error from "../error/error";
 

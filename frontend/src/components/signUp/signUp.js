@@ -1,10 +1,10 @@
 import React, {Component} from "react";
 import {connect} from "react-redux";
-import "./sign_up.css";
+import "./signUp.css";
 import "../static/css/form.css";
 import "../static/css/buttons.css";
 import Spinner from "../spinner";
-import {signUpBack, signUpCompleted} from "../../actions/user_actions";
+import {signUpBack, signUpCompleted} from "../../actions/userActions";
 import * as Yup from "yup";
 import {ErrorMessage, Field, Form, Formik} from "formik";
 
@@ -63,11 +63,11 @@ class SignUp extends Component {
     }
 
     render() {
-        const {sign_up, signUpBack} = this.props;
+        const {signUp, signUpBack} = this.props;
         const {loading, error, initialValues} = this.state;
         const errorP = error.error ? <p className="error">{error.shortMessage}</p> : null;
         return (
-            <div className={sign_up ? "modal-sign_up modal-display-sign_up" : "modal-sign_up"}>
+            <div className={signUp ? "modal-sign_up modal-display-sign_up" : "modal-sign_up"}>
                 <div className="modal-content-sign_up">
                     <span className="close" onClick={() => {
                         signUpBack();
@@ -115,7 +115,7 @@ class SignUp extends Component {
 
 const mapStateToProps = (state) => {
     return {
-        sign_up: state.user.sign_up
+        signUp: state.user.signUp
     }
 };
 const mapDispatchToProps = {

@@ -17,7 +17,6 @@ class CreateCommentView(CreateAPIView):
         kwargs["context"] = self.get_serializer_context()
         data = self.request.data.copy()
         data["author"] = self.request.user.id
-        print(data)
         kwargs["data"] = data
         return serializer_class(*args, **kwargs)
 
@@ -25,4 +24,4 @@ class CreateCommentView(CreateAPIView):
 class CommentView(RetrieveUpdateDestroyAPIView):
     queryset = Comment.objects.all()
     serializer_class = CommentSerializer
-    permission_classes = (IsAuthenticated, IsSafeOrOwner, IsOwnerOrAdmin)
+    permission_classes = (IsSafeOrOwner,)
