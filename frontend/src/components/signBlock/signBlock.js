@@ -1,10 +1,10 @@
 import React, {Component} from "react";
 import WithService from "../../hoc";
 import {connect} from "react-redux";
-import {signInClicked, signUpClicked, signOut} from "../../actions/user_actions";
-import "./sign_block.css";
-import SignIn from "../sign_in/sign_in";
-import SignUp from "../sign_up/sign_up";
+import {signInClicked, signUpClicked, signOut} from "../../actions/userActions";
+import "./signBlock.css";
+import SignIn from "../signIn/signIn";
+import SignUp from "../signUp/signUp";
 
 class SignBlock extends Component {
     SignInClick = () => {

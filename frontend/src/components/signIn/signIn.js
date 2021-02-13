@@ -1,7 +1,7 @@
 import React, {Component} from "react";
-import {tokenLoaded, signInBack} from "../../actions/user_actions";
+import {tokenLoaded, signInBack} from "../../actions/userActions";
 import {connect} from "react-redux";
-import "./sign_in.css";
+import "./signIn.css";
 import "../static/css/form.css";
 import "../static/css/buttons.css";
 import Spinner from "../spinner";
@@ -60,10 +60,10 @@ class SignIn extends Component {
 
     render() {
         const {initialValues, loading, error} = this.state;
-        const {signInBack, sign_in} = this.props;
+        const {signInBack, signIn} = this.props;
         const errorBlock = error.error ? error.shortMessage : "";
         return (
-            <div className={sign_in ? "modal-sign_in modal-display-sign_in" : "modal-sign_in"}>
+            <div className={signIn ? "modal-sign_in modal-display-sign_in" : "modal-sign_in"}>
                 <div className="modal-content-sign_in">
                      <span className="close" onClick={() => {
                          signInBack();
@@ -101,7 +101,7 @@ class SignIn extends Component {
 
 const mapStateToProps = (state) => {
     return {
-        sign_in: state.user.sign_in,
+        signIn: state.user.signIn,
     }
 };
 const mapDispatchToProps = {

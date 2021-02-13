@@ -1,7 +1,7 @@
 import React, {Component} from "react";
 import {Link} from "react-router-dom";
-import "./navigation_menu.css";
-import SignBlock from "../sign_block";
+import "./navigationMenu.css";
+import SignBlock from "../signBlock";
 
 class NavMenu extends Component {
     render() {

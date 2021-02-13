@@ -8,7 +8,3 @@ class CustomError extends Error {
 }
 
 export default CustomError;
-
-
-// Sorry but the page you are looking for does not exist, have been removed. name changed or is temporarily unavailable
-// Oops! Page Not Be Found

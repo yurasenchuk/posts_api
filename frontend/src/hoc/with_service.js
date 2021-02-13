@@ -1,5 +1,5 @@
 import React from "react";
-import PostAPIServiceContext from "../services_contexts";
+import PostAPIServiceContext from "../servicesContexts";
 
 const WithService = () => (Wrapped) => {
     return (props) => {

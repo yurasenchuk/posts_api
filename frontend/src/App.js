@@ -1,5 +1,5 @@
 import React, {Component} from 'react';
-import NavMenu from "./components/navigation_menu";
+import NavMenu from "./components/navigationMenu";
 import {Route, Switch} from "react-router-dom";
 import PostList from "./components/postList";
 import PostGetById from "./components/post/postGetById";

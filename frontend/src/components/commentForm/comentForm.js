@@ -1,11 +1,11 @@
 import React, {Component} from "react";
 import WithService from "../../hoc";
 import {connect} from "react-redux";
-import {commentUpdateCompleted, commentCreateCompleted} from "../../actions/comment_actions";
-import {signInClicked} from "../../actions/user_actions";
+import {commentUpdateCompleted, commentCreateCompleted} from "../../actions/commentActions";
+import {signInClicked} from "../../actions/userActions";
 import "../static/css/form.css";
 import "../static/css/buttons.css";
-import "./coment_form.css";
+import "./comentForm.css";
 import * as Yup from "yup";
 import {Formik, Form, Field, ErrorMessage} from "formik";
 import Error from "../error";

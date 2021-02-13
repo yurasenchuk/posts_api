@@ -1,5 +1,5 @@
 import React, {Component} from "react";
-import "./comment_item.css";
+import "./commentItem.css";
 
 class CommentItem extends Component {
     delete = () => {

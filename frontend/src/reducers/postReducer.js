@@ -2,7 +2,7 @@ const initialState = {
     posts: []
 };
 
-const post_reducer = (state = initialState, action) => {
+const postReducer = (state = initialState, action) => {
     switch (action.type) {
         case 'POSTS_LOADED':
             return {
@@ -51,4 +51,4 @@ const post_reducer = (state = initialState, action) => {
     }
 }
 
-export default post_reducer;
+export default postReducer;

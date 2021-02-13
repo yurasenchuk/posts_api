@@ -32,7 +32,6 @@ class PostCreateView(CreateAPIView):
         data = self.request.data.copy()
         data["author"] = self.request.user.id
         kwargs["data"] = data
-        print(data)
         return serializer_class(*args, **kwargs)
 
 
@@ -45,7 +44,6 @@ class PostView(RetrieveUpdateDestroyAPIView):
     queryset = Post.objects.all()
     serializer_class = PostSerializer
     permission_classes = (IsSafeOrOwner, IsOwnerOrAdmin)
-
 
 
 class CommentListForPost(APIView):

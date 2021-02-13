@@ -2,7 +2,7 @@ const initialState = {
     comments: []
 };
 
-const comment_reducer = (state = initialState, action) => {
+const commentReducer = (state = initialState, action) => {
     switch (action.type) {
         case 'COMMENTS_LOADED':
             return {
@@ -51,4 +51,4 @@ const comment_reducer = (state = initialState, action) => {
     }
 }
 
-export default comment_reducer;
+export default commentReducer;
