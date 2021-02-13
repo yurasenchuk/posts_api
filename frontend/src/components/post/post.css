@@ -1,0 +1,14 @@
+.post_item_by_id {
+    height: 100%;
+    width: 100%;
+}
+
+.post_fields_by_id {
+    font-size: 30px;
+    padding:2% 30%;
+}
+
+.post_create_update {
+    margin:0 40%;
+    padding: 10% 0;
+}

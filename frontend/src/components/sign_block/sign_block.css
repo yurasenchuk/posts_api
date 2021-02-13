@@ -1,0 +1,16 @@
+.sign_in_up_out-button {
+    margin: 11px 2px;
+    float: right;
+    color: #3E363F;
+    background-color: #90AFC5;
+    text-align: center;
+    padding: 14px 16px;
+    text-decoration: none;
+    font-size: 17px;
+    border: 2px;
+}
+
+.sign_in_up_out-button:hover {
+    background-color: #3E363F;
+    color: #90AFC5;
+}

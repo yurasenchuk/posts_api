@@ -1,0 +1,83 @@
+.create-button {
+    float: left;
+    color: #3E363F;
+    background-color: #90AFC5;
+    text-align: center;
+    padding: 14px 16px;
+    margin-top: 5%;
+    margin-left: 5%;
+    text-decoration: none;
+    font-size: 17px;
+    border: 2px;
+}
+
+.create-button div{
+    display: inline-block;
+}
+
+.create-button:hover {
+    background-color: #3E363F;
+    color: #90AFC5;
+}
+
+.update-button {
+    float: right;
+    top: 0;
+    margin-right: 5%;
+    margin-top: 5%;
+    color: #3E363F;
+    background-color: #90AFC5;
+    text-align: center;
+    padding: 14px 16px;
+    text-decoration: none;
+    font-size: 17px;
+    border: 2px;
+}
+
+.update-button:hover {
+    background-color: #3E363F;
+    color: #90AFC5;
+}
+
+.delete-button {
+    float: right;
+    top: 0;
+    margin-right: 5%;
+    margin-top: 5%;
+    color: #3E363F;
+    background-color: #90AFC5;
+    text-align: center;
+    padding: 14px 16px;
+    text-decoration: none;
+    font-size: 17px;
+    border: 2px;
+}
+
+.delete-button:hover {
+    background-color: #3E363F;
+    color: #90AFC5;
+}
+
+.btn-submit {
+    /* border: 1px solid #3079ed; */
+    border: 0;
+    color: #fff;
+    text-shadow: 0 1px rgba(0, 0, 0, 0.1);
+    background-color: #4d90fe;
+    padding: 17px 0;
+    font-size: 14px;
+    width: 100%;
+    display: block;
+    margin-bottom: 10px;
+    position: relative;
+    cursor: pointer;
+    /* background-image: -webkit-gradient(linear, 0 0, 0 100%,   from(#4d90fe), to(#4787ed)); */
+}
+
+.btn-submit:hover {
+    /* border: 1px solid #2f5bb7; */
+    border: 0;
+    text-shadow: 0 1px rgba(0, 0, 0, 0.3);
+    background-color: #357ae8;
+    /* background-image: -webkit-gradient(linear, 0 0, 0 100%,   from(#4d90fe), to(#357ae8)); */
+}
