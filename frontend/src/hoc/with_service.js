@@ -1,7 +1,7 @@
 import React from "react";
-import PostAPIServiceContext from "../servicesContexts";
+import {PostAPIServiceContext, UserServiceContext} from "../servicesContexts";
 
-const WithService = () => (Wrapped) => {
+const WithPostService = () => (Wrapped) => {
     return (props) => {
         return (
             <PostAPIServiceContext.Consumer>
@@ -15,4 +15,17 @@ const WithService = () => (Wrapped) => {
     }
 };
 
-export default WithService;
+const WithUserService = () => (Wrapped) => {
+    return (props) => {
+        return (
+            <UserServiceContext.Consumer>
+                {
+                    (UserService) => {
+                        return <Wrapped {...props} UserService={UserService}/>
+                    }
+                }
+            </UserServiceContext.Consumer>
+        )
+    }
+}
+export {WithPostService, WithUserService};

@@ -18,8 +18,10 @@ class LoginView(TokenObtainPairView):
 class LogoutView(APIView):
     def post(self, request):
         try:
+            print(request.data)
             token = RefreshToken(request.data["refresh"])
             token.blacklist()
             return Response(status=status.HTTP_205_RESET_CONTENT)
         except Exception as e:
+            print(e)
             return Response({"detail": str(e)}, status=status.HTTP_400_BAD_REQUEST)

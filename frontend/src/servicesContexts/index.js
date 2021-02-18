@@ -1,3 +1,3 @@
-import PostAPIServiceContext from "./serviceContext";
+import {PostAPIServiceContext, UserServiceContext} from "./serviceContext";
 
-export default PostAPIServiceContext;
+export {PostAPIServiceContext, UserServiceContext};

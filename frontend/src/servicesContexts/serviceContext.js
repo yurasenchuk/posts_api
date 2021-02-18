@@ -3,4 +3,6 @@ import React from "react";
 
 const PostAPIServiceContext = React.createContext();
 
-export default PostAPIServiceContext;
+const UserServiceContext = React.createContext();
+
+export {PostAPIServiceContext, UserServiceContext};

@@ -27,16 +27,9 @@ const tokenLoaded = () => {
     }
 }
 
-const signUpCompleted = (data) => {
-    return {
-        type: 'SIGN_UP_COMPLETED',
-        payload: data
-    }
-}
-
 const signOut = () => {
     return {
-        type: 'SIGN_OUT',
+        type: 'LOGOUT'
     }
 }
 
@@ -46,6 +39,5 @@ export {
     signUpClicked,
     signUpBack,
     tokenLoaded,
-    signUpCompleted,
     signOut
 };

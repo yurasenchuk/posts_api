@@ -4,7 +4,7 @@ import "./signUp.css";
 import "../static/css/form.css";
 import "../static/css/buttons.css";
 import Spinner from "../spinner";
-import {signUpBack, signUpCompleted} from "../../actions/userActions";
+import {signUpBack} from "../../actions/userActions";
 import * as Yup from "yup";
 import {ErrorMessage, Field, Form, Formik} from "formik";
 
@@ -41,7 +41,7 @@ class SignUp extends Component {
     });
     register = (fields) => {
         console.log(fields)
-        const {PostAPIService, signUpCompleted} = this.props;
+        const {UserService} = this.props;
         this.setState({
             ...this.state,
             loading: true,
@@ -49,8 +49,11 @@ class SignUp extends Component {
                 error: false
             }
         })
-        PostAPIService.signUp(fields)
-            .then(data => signUpCompleted(data))
+        UserService.signUp(fields)
+            .then(this.setState({
+                ...this.state,
+                loading: false
+            }))
             .catch(error => this.setState({
                 ...this.state,
                 loading: false,
@@ -115,11 +118,10 @@ class SignUp extends Component {
 
 const mapStateToProps = (state) => {
     return {
-        signUp: state.user.signUp
+        signUp: state.signUp
     }
 };
 const mapDispatchToProps = {
-    signUpBack,
-    signUpCompleted,
+    signUpBack
 };
 export default connect(mapStateToProps, mapDispatchToProps)(SignUp);

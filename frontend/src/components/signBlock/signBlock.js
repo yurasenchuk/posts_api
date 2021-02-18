@@ -1,5 +1,5 @@
 import React, {Component} from "react";
-import WithService from "../../hoc";
+import {WithUserService} from "../../hoc";
 import {connect} from "react-redux";
 import {signInClicked, signUpClicked, signOut} from "../../actions/userActions";
 import "./signBlock.css";
@@ -16,37 +16,32 @@ class SignBlock extends Component {
     }
 
     SignOutClick = () => {
-        const {PostAPIService, signOut} = this.props;
-        PostAPIService.checkToken(PostAPIService.logOut)
-            .then((data) => {
-                signOut(data);
+        const {UserService, signOut} = this.props;
+        UserService.logOut()
+            .then(() => {
+                signOut();
                 this.setState({
                     ...this.state,
                     loading: false
-                })
+                });
             })
             .catch((e) => {
-                if (e.status === 401) {
-                    signInClicked()
-                } else {
-                    const error = {
-                        error: true,
-                        status: e.status,
-                        shortMessage: "Something went wrong!"
-                    }
-                    this.setState({
-                        ...this.state,
-                        error: error,
-                        loading: false
-                    });
+                const error = {
+                    error: true,
+                    status: e.status,
+                    shortMessage: "Something went wrong!"
                 }
+                this.setState({
+                    ...this.state,
+                    error: error,
+                    loading: false
+                });
             });
     }
 
-
     render() {
-        const {login, PostAPIService} = this.props;
-        if (login.logged) {
+        const {login, UserService} = this.props;
+        if (login) {
             return (
                 <button className="sign_in_up_out-button" onClick={this.SignOutClick}> Sign out</button>
             )
@@ -54,9 +49,9 @@ class SignBlock extends Component {
         return (
             <>
                 <button className="sign_in_up_out-button" onClick={this.SignUpClick}> Sign up</button>
-                <SignUp PostAPIService={PostAPIService}/>
+                <SignUp UserService={UserService}/>
                 <button className="sign_in_up_out-button" onClick={this.SignInClick}>Sign in</button>
-                <SignIn PostAPIService={PostAPIService}/>
+                <SignIn UserService={UserService}/>
             </>
         )
     }
@@ -65,7 +60,8 @@ class SignBlock extends Component {
 
 const mapStateToProps = (state) => {
     return {
-        login: state.user.login
+        login: state.user,
+        refresh: state.refreshExp
     }
 };
 const mapDispatchToProps = {
@@ -74,4 +70,4 @@ const mapDispatchToProps = {
     signOut
 };
 
-export default WithService()(connect(mapStateToProps, mapDispatchToProps)(SignBlock));
+export default WithUserService()(connect(mapStateToProps, mapDispatchToProps)(SignBlock));
