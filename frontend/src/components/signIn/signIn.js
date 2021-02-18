@@ -1,5 +1,5 @@
 import React, {Component} from "react";
-import {tokenLoaded, signInBack} from "../../actions/userActions";
+import {signInBack, tokenLoaded} from "../../actions/userActions";
 import {connect} from "react-redux";
 import "./signIn.css";
 import "../static/css/form.css";
@@ -29,7 +29,7 @@ class SignIn extends Component {
     });
 
     login = (fields) => {
-        const {PostAPIService, tokenLoaded} = this.props;
+        const {UserService, tokenLoaded} = this.props;
         this.setState({
             ...this.state,
             loading: true,
@@ -37,12 +37,13 @@ class SignIn extends Component {
                 error: false
             }
         })
-        PostAPIService.signIn(fields)
-            .then(() => {
+        UserService.signIn(fields)
+            .then(() =>
+            {
                 this.setState({
                     ...this.state,
                     loading: false,
-                })
+                });
                 tokenLoaded();
             })
             .catch(error => this.setState({
@@ -101,11 +102,11 @@ class SignIn extends Component {
 
 const mapStateToProps = (state) => {
     return {
-        signIn: state.user.signIn,
+        signIn: state.signIn,
     }
 };
 const mapDispatchToProps = {
-    tokenLoaded,
     signInBack,
+    tokenLoaded
 };
 export default connect(mapStateToProps, mapDispatchToProps)(SignIn);

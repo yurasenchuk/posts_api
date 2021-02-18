@@ -1,9 +1,7 @@
 import React, {Component} from "react";
 import PostItem from "../postItem";
 import {connect} from "react-redux";
-import WithService from "../../hoc";
-import {postsLoaded} from "../../actions/postActions";
-import {signInClicked} from "../../actions/userActions";
+import {WithPostService} from "../../hoc";
 import Spinner from "../spinner";
 import "./postList.css";
 import "../static/css/buttons.css";
@@ -16,49 +14,42 @@ class PostList extends Component {
         error: {
             error: false
         },
-        loading: true
+        loading: true,
+        posts: []
     }
 
     componentDidMount() {
-        const {postsLoaded, signInClicked, PostAPIService} = this.props;
+        const {PostAPIService, user} = this.props;
         this.setState({
             ...this.state,
             loading: true,
             error: false
         });
-        PostAPIService.checkToken(PostAPIService.getItems, "post/all/")
-            .then(res => {
-                postsLoaded(res);
+        PostAPIService.getItems("post/all/", user)
+            .then((res) => {
                 this.setState({
                     ...this.state,
-                    loading: false
-                });
+                    loading: false,
+                    posts: res
+                })
             })
             .catch((e) => {
-                if (e.status === 401) {
-                    signInClicked()
-                    this.setState({
-                        ...this.state,
-                        loading: false
-                    });
-                } else {
-                    const error = {
-                        error: true,
-                        status: e.status,
-                        shortMessage: e.message
-                    }
-                    this.setState({
-                        ...this.state,
-                        error: error,
-                        loading: false
-                    });
+                const error = {
+                    error: true,
+                    status: e.status,
+                    shortMessage: e.message
                 }
+                this.setState({
+                    ...this.state,
+                    error: error,
+                    loading: false
+                });
             });
     }
 
     render() {
-        const {postItems, user} = this.props;
-        const {loading, error} = this.state;
+        const {user} = this.props;
+        const {posts, loading, error} = this.state;
         if (error.error) {
             return (
                 <>
@@ -66,7 +57,7 @@ class PostList extends Component {
                 </>
             )
         }
-        const addPost = user.logged ? <Link to={'post/create/'} className="create-button">
+        const addPost = user ? <Link to={'post/create/'} className="create-button">
             <div className="create-button-text">Add post</div>
         </Link> : null;
         return (
@@ -75,7 +66,7 @@ class PostList extends Component {
                 <Spinner loading={loading}/>
                 <div className="posts_list">
                     {
-                        postItems.map(postItem => {
+                        posts.map(postItem => {
                             return <PostItem key={postItem.id} post={postItem}/>
                         })
                     }
@@ -87,14 +78,8 @@ class PostList extends Component {
 
 const mapStateToProps = (state) => {
     return {
-        postItems: state.post.posts,
-        user: state.user.login
+        user: state.user
     }
 };
 
-const mapDispatchToProps = {
-    postsLoaded,
-    signInClicked
-};
-
-export default WithService()(connect(mapStateToProps, mapDispatchToProps)(PostList));
+export default WithPostService()(connect(mapStateToProps)(PostList));

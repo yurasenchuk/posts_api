@@ -1,7 +1,6 @@
 import React, {Component} from "react";
-import WithService from "../../hoc";
+import {WithPostService} from "../../hoc";
 import {connect} from "react-redux";
-import {postUpdateCompleted, postCreateCompleted} from "../../actions/postActions";
 import {signInClicked} from "../../actions/userActions";
 import "./post.css";
 import "../static/css/form.css";
@@ -14,11 +13,30 @@ import {Link} from "react-router-dom";
 
 class PostForm extends Component {
     findPost = () => {
-        const {
-            title,
-            link
-        } = this.props.posts.find(post => post.id === this.props.match.params.postId);
-        return {title, link}
+        const {PostAPIService, user} = this.props;
+        this.setState({
+            ...this.state,
+            loading: true,
+            error: false
+        });
+        return PostAPIService.getItems(`post/${this.state.id}/`, user)
+            .then(
+                this.setState({
+                    ...this.state,
+                    loading: false,
+                }))
+            .catch((e) => {
+                const error = {
+                    error: true,
+                    status: e.status,
+                    shortMessage: e.message
+                }
+                this.setState({
+                    ...this.state,
+                    error: error,
+                    loading: false
+                });
+            });
     }
     state = {
         id: this.props.match.params.postId,
@@ -49,9 +67,12 @@ class PostForm extends Component {
 
 
     onSubmit = (fields) => {
+        console.log(fields)
+        console.log(this.props.user)
         let postData = new FormData();
         postData.append('title', fields.title);
         postData.append('link', fields.link);
+        postData.append('author', this.props.user.user_id)
         if (this.state.isAddMode) {
             this.create(postData);
         } else {
@@ -65,30 +86,25 @@ class PostForm extends Component {
             loading: true,
             error: false
         });
-        const {PostAPIService, signInClicked, postCreateCompleted} = this.props;
-        PostAPIService.checkToken(PostAPIService.postItem, `post/`, data)
+        const {PostAPIService, user} = this.props;
+        PostAPIService.postItem(`post/`, data, user)
             .then((data) => {
-                postCreateCompleted(data);
                 this.setState({
                     ...this.state,
                     loading: false
                 })
             })
             .catch((e) => {
-                if (e.status === 401) {
-                    signInClicked()
-                } else {
-                    const error = {
-                        error: true,
-                        status: e.status,
-                        shortMessage: "There is already post with the same title or link created!"
-                    }
-                    this.setState({
-                        ...this.state,
-                        error: error,
-                        loading: false
-                    });
+                const error = {
+                    error: true,
+                    status: e.status,
+                    shortMessage: e.message
                 }
+                this.setState({
+                    ...this.state,
+                    error: error,
+                    loading: false
+                });
             });
     }
 
@@ -99,30 +115,24 @@ class PostForm extends Component {
             loading: true,
             error: false
         });
-        const {PostAPIService, signInClicked, postUpdateCompleted} = this.props;
-        PostAPIService.checkToken(PostAPIService.patchItem, `post/${id}/`, data)
-            .then((data) => {
-                postUpdateCompleted(data);
+        const {PostAPIService, user} = this.props;
+        PostAPIService.patchItem(`post/${id}/`, data, user)
+            .then(
                 this.setState({
                     ...this.state,
                     loading: false
-                })
-            })
+                }))
             .catch((e) => {
-                if (e.status === 401) {
-                    signInClicked()
-                } else {
-                    const error = {
-                        error: true,
-                        status: e.status,
-                        shortMessage: "There is already post with the same title or link created!"
-                    }
-                    this.setState({
-                        ...this.state,
-                        error: error,
-                        loading: false
-                    });
+                const error = {
+                    error: true,
+                    status: e.status,
+                    shortMessage: e.message
                 }
+                this.setState({
+                    ...this.state,
+                    error: error,
+                    loading: false
+                });
             });
     }
 
@@ -163,15 +173,13 @@ class PostForm extends Component {
         )
     }
 }
-
 const mapStateToProps = (state) => {
     return {
-        posts: state.post.posts
+        user: state.user
     }
-};
+}
+
 const mapDispatchToProps = {
-    postUpdateCompleted,
-    postCreateCompleted,
     signInClicked
 };
-export default WithService()(connect(mapStateToProps, mapDispatchToProps)(PostForm));
+export default WithPostService()(connect(mapStateToProps, mapDispatchToProps)(PostForm));

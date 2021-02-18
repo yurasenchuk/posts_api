@@ -1,2 +1,3 @@
-import PostAPIService from "./service";
-export default PostAPIService;
+import PostAPIService from "./postApiService";
+import UserService from "./userService";
+export {PostAPIService, UserService};

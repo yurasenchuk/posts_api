@@ -1,2 +1,2 @@
-import WithService from "./with_service";
-export default WithService;
+import {WithUserService, WithPostService} from "./with_service";
+export {WithUserService, WithPostService};
